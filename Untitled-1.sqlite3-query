@@ -6,7 +6,7 @@
 SELECT * FROM Moons;
 
 --All moons and their planets
-SELECT Planets.Name,Moons.MoonID FROM Moons
+SELECT Planets.Name,Moons.NumOfMoons FROM Moons
 JOIN Planets ON Planets.PlanetID=Moons.PlanetID;
 
 --Order by planets
@@ -15,4 +15,31 @@ ORDER BY PlanetID;
 
 --Order by number of Moons
 SELECT * FROM Moons
-ORDER BY MoonID;
+ORDER BY NumOfMoons;
+
+--Order by Moon size
+SELECT * FROM Moons
+ORDER BY `LargestSize(km)`;
+
+--just id, planet, number of moons, largestmoon, and imageurl
+SELECT Moons.PlanetID,Planets.Name,Moons.NumOfMoons,Moons.LargestMoon,Moons.ImageURL
+FROM Moons
+JOIN Planets ON Planets.PlanetID=Moons.PlanetID;
+
+--show num of moons on that planet
+SELECT * FROM Moons 
+JOIN Planets ON Planets.PlanetID=Moons.PlanetID
+WHERE Moons.NumOfMoons = 16;
+
+--show largest moon
+SELECT Moons.LargestMoon,Moons.`LargestSize(km)`
+FROM Moons;
+
+--show description of each planet and image
+SELECT Planets.Name,Planets.ImageURL,Planets.`PlanetRadius(km)`,Planets.Description
+FROM Planets;
+
+--show description of each largest moon and image
+SELECT Moons.LargestMoon,Moons.ImageURL,Moons.`LargestSize(km)`,Moons.Description
+FROM Moons;
+
